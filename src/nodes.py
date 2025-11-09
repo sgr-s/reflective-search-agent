@@ -148,7 +148,7 @@ async def execute_search(arg: dict) -> Command:
         snippet = result.get('snippet', '')
 
         try:
-            # Webページの内容を取得（タイムアウト15秒）
+            # Webページの内容を取得
             loader = WebBaseLoader(url)
             load_task = asyncio.to_thread(loader.load)
             docs = await asyncio.wait_for(load_task, timeout=15.0)
