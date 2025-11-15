@@ -2,7 +2,6 @@ import asyncio
 from src.graph import graph
 from langchain_core.messages import HumanMessage
 
-
 async def main():
     # コンパイル
     app = graph.compile()
@@ -14,12 +13,13 @@ async def main():
         "search_results": [],
         "attempt": 0
     }
-    # エージェントの実行
-    result = await app.ainvoke(initial_state)
-    # 結果の取得
-    print(f"回答: {result['response']}")
 
-    return result
+    # エージェントの実行
+    try:
+        result =await app.ainvoke(initial_state)
+        print(result["response"])
+    except:
+        print(f"\nエージェント実行中にエラーが発生しました:")
 
 
 if __name__ == "__main__":
